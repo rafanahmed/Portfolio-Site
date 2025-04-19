@@ -2,10 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* any global resets or scroll‑behavior here */
 html {
   scroll-behavior: smooth;
-}
-
-body {
-  @apply bg-black text-white font-sans;
 }
