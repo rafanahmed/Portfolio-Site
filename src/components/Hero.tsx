@@ -1,5 +1,5 @@
-// src/components/Hero.tsx
 "use client";
+// src/components/Hero.tsx
 import { motion } from 'framer-motion';
 
 export default function Hero() {

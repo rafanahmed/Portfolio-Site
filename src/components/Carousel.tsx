@@ -1,5 +1,5 @@
-// src/components/Carousel.tsx
 "use client";
+// src/components/Carousel.tsx
 import { motion } from 'framer-motion';
 import { useRef } from 'react';
 
