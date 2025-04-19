@@ -1,23 +1,21 @@
 // src/components/Hero.tsx
+"use client";
 import { motion } from 'framer-motion';
 
 export default function Hero() {
   return (
     <section id="hero" className="relative h-screen bg-black flex flex-col items-center justify-center text-center px-4">
-      {/* Placeholder for background visual */}
       <img
         src="/hero-placeholder.jpg"
         alt="Hero background"
         className="absolute inset-0 w-full h-full object-cover"
       />
-      {/* Gradient overlay */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
         className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"
       />
-      {/* Hero Text */}
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

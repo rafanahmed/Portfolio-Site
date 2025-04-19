@@ -1,5 +1,5 @@
-
 // src/components/Navbar.tsx
+"use client";
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -41,4 +41,5 @@ export default function Navbar() {
     </header>
   );
 }
+
 
