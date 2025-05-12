@@ -1,7 +1,8 @@
 "use client";
 import { useState } from 'react';
 import AnimateOnScroll from './AnimateOnScroll';
-import TextReveal from './TextReveal';
+// Remove TextReveal import if no longer needed elsewhere in the file
+// import TextReveal from './TextReveal'; 
 import { motion } from 'framer-motion';
 
 export default function ContactForm() {
@@ -63,7 +64,7 @@ export default function ContactForm() {
     initial: { scale: 1 },
     hover: { 
       scale: 1.02,
-      backgroundColor: "#333333",
+      backgroundColor: "#333333", // Kept original hover color if intended
       transition: { duration: 0.2 }
     },
     tap: { scale: 0.98 }
@@ -72,20 +73,26 @@ export default function ContactForm() {
   return (
     <section id="contact" className="bg-gray-50 py-20 border-t border-gray-200">
       <div className="max-w-3xl mx-auto px-6">
-        <TextReveal
-          text="Get in touch"
-          className="text-4xl font-bold text-gray-900 mb-8"
-          tag="h2"
-          wordDelay={0.1}
-        />
+        {/* Replace TextReveal with direct motion.h2 similar to Testimonials.tsx */}
+        <motion.h2
+          className="text-4xl font-bold text-gray-900 mb-16" // Applied mb-16 like in Testimonials.tsx
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
+          Get in touch
+        </motion.h2>
         
+        {/* Keep the original mb-10 on this paragraph if that was the intended original spacing */}
         <AnimateOnScroll delay={0.2} direction="up" distance={15}>
-          <p className="text-lg text-gray-600 mb-10">
+          <p className="text-lg text-gray-600 mb-10"> 
             Interested in discussing machine learning, algorithmic trading, or collaboration opportunities? 
             Feel free to reach out using the form below.
           </p>
         </AnimateOnScroll>
         
+        {/* Keep the original structure without the extra div */}
         {submitted ? (
           <motion.div 
             className="bg-green-50 border border-green-200 rounded-md p-6 text-center"
@@ -192,10 +199,10 @@ export default function ContactForm() {
                   type="submit"
                   disabled={isSubmitting}
                   className={`w-full py-3 bg-black text-white font-medium
-                    ${isSubmitting ? 'bg-opacity-70 cursor-not-allowed' : ''}`}
+                    ${isSubmitting ? 'bg-opacity-70 cursor-not-allowed' : ''}`} // Removed rounded-md and specific hover effect
                   variants={buttonVariants}
                   initial="initial"
-                  whileHover="hover"
+                  whileHover="hover" // Kept original hover variant name
                   whileTap="tap"
                 >
                   {isSubmitting ? 'Sending...' : 'Send Message'}
