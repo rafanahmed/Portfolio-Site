@@ -1,6 +1,6 @@
 "use client";
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import ParallaxSection from './ParallaxSection';
 import TextReveal from './TextReveal';
 import ScrollProgressBar from './ScrollProgressBar';
@@ -16,80 +16,121 @@ const slides = [
 
 export default function Hero() {
   const [index, setIndex] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [fallbackActive, setFallbackActive] = useState(false);
+  const imagesRef = useRef<HTMLImageElement[]>([]);
 
+  // Preload images
   useEffect(() => {
+    const imagePromises = slides.map((slide, i) => {
+      return new Promise((resolve, reject) => {
+        if (slide.type === 'image') {
+          const img = new Image();
+          img.src = slide.src;
+          img.onload = () => resolve(slide.src);
+          img.onerror = () => {
+            console.error(`Failed to load image: ${slide.src}`);
+            reject(new Error(`Failed to load image: ${slide.src}`));
+          };
+        } else {
+          // For videos, just resolve immediately
+          resolve(slide.src);
+        }
+      });
+    });
+
+    Promise.all(imagePromises)
+      .then(() => {
+        setImagesLoaded(true);
+      })
+      .catch((error) => {
+        console.error("Some images failed to load:", error);
+        setFallbackActive(true);
+        setImagesLoaded(true); // Still mark as loaded to continue with fallbacks
+      });
+
     const interval = setInterval(() => {
       setIndex((i) => (i + 1) % slides.length);
     }, 7000);
+    
     return () => clearInterval(interval);
   }, []);
+
+  // For fallback display if images don't load
+  const fallbackStyle = {
+    backgroundImage: "linear-gradient(45deg, #1a1a1a 0%, #2c2c2c 100%)",
+    backgroundSize: "cover"
+  };
 
   return (
     <>
       {/* Add a scroll progress indicator at the top of the page */}
-      <ScrollProgressBar color="white" height={3} />
+      <ScrollProgressBar color="white" height={3} zIndex={100} />
       
-      <section id="hero" className="relative h-screen flex items-center justify-center">
+      <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Background carousel slides with parallax effect */}
-        <AnimatePresence>
-          {slides.map((slide, i) =>
-            i === index && (
-              <ParallaxSection key={slide.src} strength={80} direction="up">
-                {slide.type === 'video' ? (
-                  <motion.video
-                    src={slide.src}
-                    autoPlay
-                    loop
-                    muted
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 1 }}
-                    className="absolute inset-0 w-full h-full object-cover"
-                    onError={(e) => {
-                      // Fallback for missing videos - switch to image fallback
-                      const target = e.target as HTMLVideoElement;
-                      const container = target.parentElement;
-                      if (container) {
-                        // Replace with a fallback image
-                        const img = document.createElement('img');
-                        img.src = '/Images/default-placeholder.jpg';
-                        img.className = target.className;
-                        img.style.opacity = '1';
-                        target.style.display = 'none';
-                        container.appendChild(img);
-                      }
-                    }}
-                  />
-                ) : (
-                  <motion.img
-                    src={slide.src}
-                    alt="Hero background"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 1 }}
-                    className="absolute inset-0 w-full h-full object-cover"
-                    onError={(e) => {
-                      // Fallback for missing images
-                      const target = e.target as HTMLImageElement;
-                      target.src = '/Images/default-placeholder.jpg';
-                    }}
-                  />
-                )}
-              </ParallaxSection>
-            )
-          )}
-        </AnimatePresence>
+        {imagesLoaded ? (
+          <AnimatePresence>
+            {slides.map((slide, i) =>
+              i === index && (
+                <ParallaxSection key={slide.src} strength={80} direction="up">
+                  {slide.type === 'video' ? (
+                    <motion.video
+                      src={slide.src}
+                      autoPlay
+                      loop
+                      muted
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 1 }}
+                      className="absolute inset-0 w-full h-full object-cover"
+                      onError={() => setFallbackActive(true)}
+                    />
+                  ) : (
+                    <motion.div
+                      className="absolute inset-0 w-full h-full"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 1 }}
+                    >
+                      {!fallbackActive ? (
+                        <img
+                          ref={(el) => {
+                            // Only add non-null elements to the array
+                            if (el) imagesRef.current[i] = el;
+                          }}
+                          src={slide.src}
+                          alt="Hero background"
+                          className="w-full h-full object-cover"
+                          onError={() => setFallbackActive(true)}
+                        />
+                      ) : (
+                        <div 
+                          className="w-full h-full bg-gradient-to-r from-gray-900 to-black"
+                          style={fallbackStyle}
+                        />
+                      )}
+                    </motion.div>
+                  )}
+                </ParallaxSection>
+              )
+            )}
+          </AnimatePresence>
+        ) : (
+          // Loading placeholder
+          <div className="absolute inset-0 bg-gray-800 animate-pulse" />
+        )}
 
         {/* Dark overlay for contrast */}
-        <div className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm" />
+        <div className="absolute inset-0 bg-black bg-opacity-60 backdrop-blur-sm" />
 
         {/* Foreground content - centered with text reveal */}
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full text-center">
           <TextReveal
             text="Rafan Ahmed"
-            className="text-white text-6xl md:text-8xl font-bold leading-tight"
+            className="text-white text-6xl md:text-8xl font-bold leading-tight mb-4"
             tag="h1"
             wordDelay={0.15}
             initialDelay={0.5}

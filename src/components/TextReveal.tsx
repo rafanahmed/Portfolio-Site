@@ -19,8 +19,11 @@ export default function TextReveal({
   tag = 'p',
   once = true
 }: TextRevealProps) {
+  // Make sure there are spaces in the text by adding spaces between words that might be missing them
+  const processedText = text.replace(/([a-z])([A-Z])/g, '$1 $2');
+  
   // Split text into words
-  const words = text.split(' ');
+  const words = processedText.split(' ').filter(word => word.trim() !== '');
   
   // Create variants for container animation
   const containerVariants = {
