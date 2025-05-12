@@ -15,7 +15,7 @@ const slides = [
 
 export default function Hero() {
   const [index, setIndex] = useState(0);
-  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(true);
   const [fallbackActive, setFallbackActive] = useState(false);
   const imagesRef = useRef<HTMLImageElement[]>([]);
 
@@ -125,7 +125,7 @@ export default function Hero() {
         {/* Dark overlay for contrast */}
         <div className="absolute inset-0 bg-black bg-opacity-60 backdrop-blur-sm" />
 
-        {/* Foreground content - centered with text reveal */}
+        Foreground content - centered with text reveal
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full text-center">
           <TextReveal
             text="Rafan Ahmed"
