@@ -20,7 +20,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="hero" className="relative h-screen overflow-hidden">
+    <section id="hero" className="relative h-screen flex items-center">
       {/* Background carousel slides */}
       <AnimatePresence>
         {slides.map((slide, i) =>
@@ -58,23 +58,23 @@ export default function Hero() {
       <div className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm" />
 
       {/* Foreground content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="text-white text-5xl md:text-7xl font-bold leading-tight"
+          className="text-white text-6xl md:text-8xl font-bold leading-tight"
         >
-          Rafan Ahmed
+          AI-Powered<br />Algorithms for<br />Critical Decisions
         </motion.h1>
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1 }}
-          className="text-gray-200 text-lg md:text-2xl mt-4 max-w-2xl"
+          className="text-gray-200 text-xl md:text-2xl mt-8 max-w-2xl"
         >
-          Computer Science student at UNC Charlotte specializing in AI. Skilled in Python,
-          Java, C, Django, and Next.js.
+          Machine Learning Enthusiast | Full-Stack Developer | CS Student at UNC Charlotte
+          Specializing in algorithmic trading, quantitative finance, and AI-powered applications.
         </motion.p>
       </div>
     </section>
