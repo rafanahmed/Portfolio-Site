@@ -1,4 +1,4 @@
-"use client";
+// src/app/layout.tsx
 import '@/styles/globals.css';    // <-- adjust this path if your CSS lives somewhere else
 import ScrollProgressBar from '@/components/ScrollProgressBar';
 
