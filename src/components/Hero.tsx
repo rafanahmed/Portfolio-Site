@@ -30,49 +30,48 @@ export default function Hero() {
 
   return (
     <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image Carousel */}
-      <AnimatePresence mode="wait">
-        {slides.map((slide, i) =>
-          i === index && (
-            <motion.div
-              key={slide.src}
-              className="absolute inset-0 w-full h-full"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }} /* Faster transition - reduced from 1s to 0.5s */
-            >
-              <img
-                src={slide.src}
-                alt={`Slide ${i+1}`}
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  console.error(`Failed to load image: ${slide.src}`);
-                  // Apply fallback styling to the parent div on error
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                  const parentDiv = target.parentElement;
-                  if (parentDiv) {
-                    parentDiv.style.backgroundImage = fallbackStyle.backgroundImage;
-                    parentDiv.style.backgroundSize = fallbackStyle.backgroundSize;
-                  }
-                }}
-              />
-            </motion.div>
-          )
-        )}
-      </AnimatePresence>
+      {/* Background Image Carousel - The key change is here */}
+      <div className="absolute inset-0 w-full h-full">
+        {/* Show all images with absolute positioning, control visibility with opacity */}
+        {slides.map((slide, i) => (
+          <motion.div
+            key={slide.src}
+            className="absolute inset-0 w-full h-full"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: i === index ? 1 : 0 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            style={{ zIndex: i === index ? 1 : 0 }}
+          >
+            <img
+              src={slide.src}
+              alt={`Slide ${i+1}`}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                console.error(`Failed to load image: ${slide.src}`);
+                // Apply fallback styling to the parent div on error
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+                const parentDiv = target.parentElement;
+                if (parentDiv) {
+                  parentDiv.style.backgroundImage = fallbackStyle.backgroundImage;
+                  parentDiv.style.backgroundSize = fallbackStyle.backgroundSize;
+                }
+              }}
+            />
+          </motion.div>
+        ))}
+      </div>
 
       {/* Dark overlay for contrast */}
-      <div className="absolute inset-0 bg-black bg-opacity-60 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-black bg-opacity-60 backdrop-blur-sm z-10" />
 
       {/* Foreground content with text */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full text-center">
+      <div className="relative z-20 max-w-7xl mx-auto px-6 w-full text-center">
         <motion.h1
           className="text-white text-6xl md:text-8xl font-bold leading-tight mb-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }} /* Slightly faster animation */
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
           Rafan Ahmed
         </motion.h1>
@@ -80,7 +79,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.5 }} /* Slightly faster animation */
+          transition={{ duration: 0.8, delay: 0.5 }}
           className="mt-8"
         >
           <motion.p
