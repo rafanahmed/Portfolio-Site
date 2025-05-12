@@ -1,4 +1,4 @@
-// src/components/InfoSection.tsx
+"use client";
 export default function InfoSection() {
   return (
     <section id="skills" className="bg-white py-32">
@@ -17,7 +17,7 @@ export default function InfoSection() {
               { skill: 'Full-Stack Development', desc: 'Django REST Framework, Google Gemini API integration, Git/GitHub version control.' },
               { skill: 'Python', desc: 'Data analysis, scientific computing with NumPy/Pandas, and AI model implementation.' },
               { skill: 'Leadership & Communication', desc: 'Project management, public speaking, and teaching complex technical concepts to diverse audiences.' },
-            ].map(({ skill, desc }) => (
+            ].map(({ skill, desc }: { skill: string; desc: string }) => (
               <div key={skill} className="flex flex-col md:flex-row gap-8 md:items-center">
                 <h3 className="text-2xl font-medium text-black w-full md:w-1/4">{skill}</h3>
                 <p className="text-gray-600 md:w-3/4">{desc}</p>

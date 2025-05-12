@@ -40,12 +40,13 @@ export default function ProjectTabs() {
         <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="relative h-96 rounded-md overflow-hidden bg-gray-900">
             <img 
-              src={`/project-${activeTab}.jpg`} 
+              src={`/Images/project-${activeTab}.jpg`}
               alt={projects.find(p => p.id === activeTab)?.name || 'Project'} 
               className="w-full h-full object-cover"
               onError={(e) => {
                 // Fallback for missing images
-                e.currentTarget.src = '/default-project.jpg';
+                const target = e.target as HTMLImageElement;
+                target.src = '/Images/default-project.jpg';
               }}
             />
             

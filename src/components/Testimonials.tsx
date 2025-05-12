@@ -1,4 +1,4 @@
-// src/components/Testimonials.tsx
+"use client";
 export default function Testimonials() {
     return (
       <section className="bg-gray-50 py-24 border-t border-gray-200">
@@ -37,4 +37,4 @@ export default function Testimonials() {
         </div>
       </section>
     );
-  }
+}

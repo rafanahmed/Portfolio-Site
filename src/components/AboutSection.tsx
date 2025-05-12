@@ -1,4 +1,4 @@
-// src/components/AboutSection.tsx
+"use client";
 export default function AboutSection() {
     return (
       <section className="bg-white py-20">
@@ -34,4 +34,4 @@ export default function AboutSection() {
         </div>
       </section>
     );
-  }
+}

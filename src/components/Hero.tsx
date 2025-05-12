@@ -2,10 +2,10 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
-// Define a mix of video and image slides
+// Define a mix of video and image slides with reliable fallback paths
 const slides = [
-  { type: 'video', src: '/Videos/bleedTikTokjRk0Gl4DDQgpv.mp4' },
-  { type: 'image', src: '/Images/_.jpeg' },
+  { type: 'image', src: '/Images/placeholder-hero.jpg' },
+  { type: 'image', src: '/Images/placeholder-hero-2.jpg' },
 ];
 
 export default function Hero() {
@@ -47,6 +47,11 @@ export default function Hero() {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 1 }}
                 className="absolute inset-0 w-full h-full object-cover"
+                onError={(e) => {
+                  // Fallback for missing images
+                  const target = e.target as HTMLImageElement;
+                  target.src = '/Images/default-placeholder.jpg';
+                }}
               />
             )
           )

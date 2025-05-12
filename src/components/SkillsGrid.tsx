@@ -1,4 +1,4 @@
-// src/components/SkillsGrid.tsx
+"use client";
 export default function SkillsGrid() {
     const skills = [
       {
@@ -70,4 +70,4 @@ export default function SkillsGrid() {
         </div>
       </section>
     );
-  }
+}

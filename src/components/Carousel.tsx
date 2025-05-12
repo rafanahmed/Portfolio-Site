@@ -23,7 +23,8 @@ export default function Carousel() {
 
   return (
     <section id="projects" className="relative bg-black py-16">
-      <div className="absolute inset-0 opacity-10 bg-[url('/grid-pattern.svg')] bg-repeat" />
+      {/* Remove the potentially missing background image */}
+      <div className="absolute inset-0 opacity-10 bg-black" />
       <div className="max-w-7xl mx-auto relative px-4">
         <button onClick={() => scroll('left')} className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 p-2 rounded-full z-10" aria-label="Scroll Left">
           ←
