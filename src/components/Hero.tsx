@@ -40,7 +40,7 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 1 }}
+              transition={{ duration: 0.5 }} /* Faster transition - reduced from 1s to 0.5s */
             >
               <img
                 src={slide.src}
@@ -72,7 +72,7 @@ export default function Hero() {
           className="text-white text-6xl md:text-8xl font-bold leading-tight mb-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.2 }} /* Slightly faster animation */
         >
           Rafan Ahmed
         </motion.h1>
@@ -80,14 +80,14 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.2 }}
+          transition={{ duration: 0.8, delay: 0.5 }} /* Slightly faster animation */
           className="mt-8"
         >
           <motion.p
             className="text-gray-200 text-xl md:text-2xl mt-8 mx-auto max-w-3xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
             Machine Learning Enthusiast | Full-Stack Developer | CS Student at UNC Charlotte
           </motion.p>
@@ -96,25 +96,11 @@ export default function Hero() {
             className="text-gray-200 text-xl md:text-2xl mt-2 mx-auto max-w-3xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
           >
             Specializing in algorithmic trading, quantitative finance, and AI-powered applications.
           </motion.p>
         </motion.div>
-        
-        {/* Optional: Image navigation dots */}
-        <div className="absolute bottom-8 left-0 right-0 flex justify-center space-x-2">
-          {slides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setIndex(i)}
-              className={`w-3 h-3 rounded-full ${
-                i === index ? "bg-white" : "bg-white bg-opacity-30"
-              } transition-all duration-300`}
-              aria-label={`Go to slide ${i + 1}`}
-            />
-          ))}
-        </div>
       </div>
     </section>
   );
