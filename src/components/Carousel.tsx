@@ -2,9 +2,9 @@
 import { motion } from 'framer-motion';
 import { useRef } from 'react';
 const projects = [
-  { title: 'QC-RNN-Trading-Strategy', desc: 'Deep learning based trading algorithm.', link: '#' },
-  { title: 'AI-Study-Assistant', desc: 'Intelligent study planner with chat support.', link: '#' },
-  { title: 'Study-Bud-App', desc: 'Collaborative study group platform.', link: '#' },
+  { title: 'QC-RNN-Overfitting-CaseStudy', desc: 'Case study of an overfit QuantConnect RNN trading strategy for SPY. Demonstrates pitfalls of lookahead bias in backtesting ML models.', link: 'https://github.com/rafanahmed/QC-RNN-Overfitting-CaseStudy' },
+  { title: 'Django-AI-Study-Assistant', desc: 'Django-based web application designed to assist users with studying, featuring AI integration powered by Google Gemini API.', link: 'https://github.com/rafanahmed/Django-AI-Study-Assistant' },
+  { title: 'Eagle Scout Project — Cemetery Construction for Local Mosque Community', desc: 'Led a team of 20+ volunteers over a 7-week period to plan and construct a cemetery for a mosque community in Charlotte, North Carolina.', link: 'https://www.linkedin.com/in/rafan-ahmed/details/projects/' },
   { title: 'Portfolio Website', desc: 'This page showcasing my work.', link: '#' },
 ];
 

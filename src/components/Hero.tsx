@@ -72,7 +72,7 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.5 }}
           className="text-white text-6xl md:text-8xl font-bold leading-tight"
         >
-          This is<br />Rafan<br />Ahmed
+          <br />Rafan<br />Ahmed
         </motion.h1>
         <motion.p
           initial={{ opacity: 0 }}
