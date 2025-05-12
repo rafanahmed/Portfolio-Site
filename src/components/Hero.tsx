@@ -4,8 +4,11 @@ import { useState, useEffect } from 'react';
 
 // Define a mix of video and image slides with your folder structure
 const slides = [
-  { type: 'video', src: '/Videos/bleedTikTokjRk0Gl4DDQgpv.mp4' }, // Use your existing video
-  { type: 'image', src: '/Images/placeholder-hero.jpg' },
+  { type: 'image', src: '/Images/PXL_20250501_185159764.jpg' }, 
+  { type: 'image', src: '/Images/PXL_20250501_183506285.jpg' }, 
+  { type: 'image', src: '/Images/PXL_20250501_184534667.jpg' }, 
+  { type: 'image', src: '/Images/IMG_3607 3.png' }, 
+  { type: 'image', src: '/Images/IMG_2313.png' },
 ];
 
 export default function Hero() {
