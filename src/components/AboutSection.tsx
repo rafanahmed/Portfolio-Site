@@ -1,18 +1,21 @@
 "use client";
 import AnimateOnScroll from './AnimateOnScroll';
-import TextReveal from './TextReveal';
+import { motion } from 'framer-motion';
 
 export default function AboutSection() {
     return (
       <section className="bg-white py-20">
         <div className="max-w-7xl mx-auto px-6">
-          <TextReveal
-            text="About me"
+          {/* Replace TextReveal with direct motion.h2 to fix spacing issue */}
+          <motion.h2
             className="text-5xl font-bold text-gray-900 mb-16"
-            tag="h2"
-            wordDelay={0.1}
-            initialDelay={0.2}
-          />
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
+            About me
+          </motion.h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div>

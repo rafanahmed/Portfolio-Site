@@ -1,6 +1,5 @@
 "use client";
 import AnimateOnScroll from './AnimateOnScroll';
-import TextReveal from './TextReveal';
 import { motion } from 'framer-motion';
 
 export default function Testimonials() {
@@ -57,12 +56,16 @@ export default function Testimonials() {
     return (
       <section className="bg-gray-50 py-24 border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-6">
-          <TextReveal
-            text="What my partners say about me"
+          {/* Replace TextReveal with direct motion.h2 to fix spacing issue */}
+          <motion.h2
             className="text-4xl font-bold text-gray-900 mb-16"
-            tag="h2"
-            wordDelay={0.1}
-          />
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
+            What my partners say about me
+          </motion.h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
