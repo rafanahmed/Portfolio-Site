@@ -19,21 +19,23 @@ export default function TextReveal({
   tag = 'p',
   once = true
 }: TextRevealProps) {
-  // Properly format text by ensuring spaces are preserved
-  const formattedText = text
-    // Add spaces between camelCase text
-    .replace(/([a-z])([A-Z])/g, '$1 $2')
-    // Add spaces between joined words (if no spaces present)
-    .replace(/([a-zA-Z])([a-zA-Z])/g, function(match, p1, p2) {
-      // Only add space if not already spaced
-      return /\s/.test(match) ? match : p1 + ' ' + p2;
-    })
-    // Replace multiple spaces with a single space
-    .replace(/\s+/g, ' ')
-    .trim();
+  // Add spaces between words if missing (e.g., "RafanAhmed" -> "Rafan Ahmed")
+  const addSpaces = (text: string): string => {
+    return text
+      // Add spaces between lowercase followed by uppercase (camelCase)
+      .replace(/([a-z])([A-Z])/g, '$1 $2')
+      // Add spaces between uppercase letters followed by uppercase + lowercase
+      .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2')
+      // Clean up any double spaces that might have been created
+      .replace(/\s+/g, ' ')
+      .trim();
+  };
+
+  // Process the text to ensure proper spacing
+  const processedText = addSpaces(text);
   
   // Split text into words, ensuring no empty strings
-  const words = formattedText.split(' ').filter(word => word.length > 0);
+  const words = processedText.split(' ').filter(word => word.length > 0);
   
   // Create variants for container animation
   const containerVariants = {
@@ -62,11 +64,7 @@ export default function TextReveal({
   };
   
   // Dynamically render the appropriate tag
-  const Container = motion[tag];
-  
-  // For debugging purposes, log the words array
-  console.log('Formatted text:', formattedText);
-  console.log('Words array:', words);
+  const Container = motion[tag as keyof typeof motion];
   
   return (
     <Container
