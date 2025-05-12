@@ -4,8 +4,11 @@ import { useState, useEffect } from 'react';
 
 // Define a mix of video and image slides with reliable fallback paths
 const slides = [
-  { type: 'image', src: '/Images/placeholder-hero.jpg' },
-  { type: 'image', src: '/Images/placeholder-hero-2.jpg' },
+  { type: 'image', src: '/Images/PXL_20250501_185159764.jpg' },
+  { type: 'image', src: '/Images/PXL_20250501_183506285.jpg' },
+  { type: 'image', src: '/Images/PXL_20250501_184534667.jpg' },
+  { type: 'image', src: '/Images/IMG_3607 3.png' },
+  { type: 'image', src: '/Images/IMG_2313.png' },
 ];
 
 export default function Hero() {
@@ -69,7 +72,7 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.5 }}
           className="text-white text-6xl md:text-8xl font-bold leading-tight"
         >
-          AI-Powered<br />Algorithms for<br />Critical Decisions
+          This is<br />Rafan<br />Ahmed
         </motion.h1>
         <motion.p
           initial={{ opacity: 0 }}
