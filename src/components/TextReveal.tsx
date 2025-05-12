@@ -5,10 +5,10 @@ import { ReactNode } from 'react';
 interface TextRevealProps {
   text: string;
   className?: string;
-  wordDelay?: number; // Delay between each word
-  initialDelay?: number; // Initial delay before animation starts
-  tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'div'; // HTML tag to use
-  once?: boolean; // Whether to animate only once
+  wordDelay?: number;
+  initialDelay?: number;
+  tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'div';
+  once?: boolean;
 }
 
 export default function TextReveal({
@@ -19,11 +19,21 @@ export default function TextReveal({
   tag = 'p',
   once = true
 }: TextRevealProps) {
-  // Make sure there are spaces in the text by adding spaces between words that might be missing them
-  const processedText = text.replace(/([a-z])([A-Z])/g, '$1 $2');
+  // Properly format text by ensuring spaces are preserved
+  const formattedText = text
+    // Add spaces between camelCase text
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    // Add spaces between joined words (if no spaces present)
+    .replace(/([a-zA-Z])([a-zA-Z])/g, function(match, p1, p2) {
+      // Only add space if not already spaced
+      return /\s/.test(match) ? match : p1 + ' ' + p2;
+    })
+    // Replace multiple spaces with a single space
+    .replace(/\s+/g, ' ')
+    .trim();
   
-  // Split text into words
-  const words = processedText.split(' ').filter(word => word.trim() !== '');
+  // Split text into words, ensuring no empty strings
+  const words = formattedText.split(' ').filter(word => word.length > 0);
   
   // Create variants for container animation
   const containerVariants = {
@@ -53,6 +63,10 @@ export default function TextReveal({
   
   // Dynamically render the appropriate tag
   const Container = motion[tag];
+  
+  // For debugging purposes, log the words array
+  console.log('Formatted text:', formattedText);
+  console.log('Words array:', words);
   
   return (
     <Container

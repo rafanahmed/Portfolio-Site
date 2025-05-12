@@ -7,11 +7,10 @@ import ScrollProgressBar from './ScrollProgressBar';
 
 // Define a mix of video and image slides with your folder structure
 const slides = [
-  { type: 'image', src: '/Images/PXL_20250501_185159764.jpg' }, 
-  { type: 'image', src: '/Images/PXL_20250501_183506285.jpg' }, 
-  { type: 'image', src: '/Images/PXL_20250501_184534667.jpg' }, 
-  { type: 'image', src: '/Images/IMG_3607 3.png' }, 
-  { type: 'image', src: '/Images/IMG_2313.png' },
+  { type: 'image', src: '/Images/PXL_20250501_185159764.jpg'}, 
+  { type: 'image', src: '/Images/1_lT08eHnMJZWi61_rb4WA9w.gif'}, 
+  { type: 'image', src: '/Images/PXL_20250501_183506285.jpg'}, 
+  { type: 'image', src: '/Images/IMG_2313.png'},
 ];
 
 export default function Hero() {
