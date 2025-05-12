@@ -1,81 +1,138 @@
 "use client";
-// src/components/Hero.tsx
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect } from 'react';
+// src/components/ContactForm.tsx
+import { useState } from 'react';
 
-// Define a mix of video and image slides
-const slides = [
-  { type: 'video', src: '/Videos/bleedTikTokjRk0Gl4DDQgpv.mp4' },
-  { type: 'image', src: '/Images/_.jpeg' },
-];
-
-export default function Hero() {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((i) => (i + 1) % slides.length);
-    }, 7000);
-    return () => clearInterval(interval);
-  }, []);
-
+export default function ContactForm() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+  
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    
+    // In a real application, you would send this data to your backend
+    console.log('Form submitted:', formData);
+    
+    setIsSubmitting(false);
+    setSubmitted(true);
+    setFormData({ name: '', email: '', subject: '', message: '' });
+    
+    // Reset submission status after 5 seconds
+    setTimeout(() => setSubmitted(false), 5000);
+  };
+  
   return (
-    <section id="hero" className="relative h-screen flex items-center">
-      {/* Background carousel slides */}
-      <AnimatePresence>
-        {slides.map((slide, i) =>
-          i === index && (
-            slide.type === 'video' ? (
-              <motion.video
-                key={slide.src}
-                src={slide.src}
-                autoPlay
-                loop
-                muted
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 1 }}
-                className="absolute inset-0 w-full h-full object-cover"
+    <section id="contact" className="bg-gray-50 py-20 border-t border-gray-200">
+      <div className="max-w-3xl mx-auto px-6">
+        <h2 className="text-4xl font-bold text-gray-900 mb-8">Get in touch</h2>
+        <p className="text-lg text-gray-600 mb-10">
+          Interested in discussing machine learning, algorithmic trading, or collaboration opportunities? 
+          Feel free to reach out using the form below.
+        </p>
+        
+        {submitted ? (
+          <div className="bg-green-50 border border-green-200 rounded-md p-6 text-center">
+            <h3 className="text-xl font-semibold text-green-800 mb-2">Message sent!</h3>
+            <p className="text-green-700">
+              Thank you for reaching out. I'll get back to you as soon as possible.
+            </p>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black"
+                />
+              </div>
+            </div>
+            
+            <div>
+              <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
+                Subject
+              </label>
+              <select
+                id="subject"
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black"
+              >
+                <option value="">Select a subject</option>
+                <option value="Internship Opportunity">Internship Opportunity</option>
+                <option value="Project Collaboration">Project Collaboration</option>
+                <option value="Algorithmic Trading">Algorithmic Trading</option>
+                <option value="Machine Learning">Machine Learning</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows={5}
+                value={formData.message}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black"
               />
-            ) : (
-              <motion.img
-                key={slide.src}
-                src={slide.src}
-                alt="Hero background"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 1 }}
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            )
-          )
+            </div>
+            
+            <div>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={`w-full py-3 bg-black text-white font-medium transition-colors
+                  ${isSubmitting ? 'bg-opacity-70 cursor-not-allowed' : 'hover:bg-gray-900'}`}
+              >
+                {isSubmitting ? 'Sending...' : 'Send Message'}
+              </button>
+            </div>
+          </form>
         )}
-      </AnimatePresence>
-
-      {/* Dark overlay for contrast */}
-      <div className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm" />
-
-      {/* Foreground content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="text-white text-6xl md:text-8xl font-bold leading-tight"
-        >
-          AI-Powered<br />Algorithms for<br />Critical Decisions
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1 }}
-          className="text-gray-200 text-xl md:text-2xl mt-8 max-w-2xl"
-        >
-          Machine Learning Enthusiast | Full-Stack Developer | CS Student at UNC Charlotte
-          Specializing in algorithmic trading, quantitative finance, and AI-powered applications.
-        </motion.p>
       </div>
     </section>
   );
