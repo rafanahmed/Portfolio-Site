@@ -1,7 +1,6 @@
 "use client";
 import { motion } from 'framer-motion';
 import { useRef } from 'react';
-
 const projects = [
   { title: 'QC-RNN-Trading-Strategy', desc: 'Deep learning based trading algorithm.', link: '#' },
   { title: 'AI-Study-Assistant', desc: 'Intelligent study planner with chat support.', link: '#' },
