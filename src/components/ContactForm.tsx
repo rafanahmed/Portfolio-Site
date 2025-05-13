@@ -18,7 +18,7 @@ const socialLinks = [
   },
   {
     name: 'X',
-    url: 'https:/x.com/gnosismaxxing',
+    url: 'https://x.com/gnosismaxxing',
     icon: '/Images/X-logo.png',
     color: 'bg-black hover:bg-gray-900 text-white'
   },
