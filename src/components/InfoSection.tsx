@@ -5,7 +5,7 @@ export default function InfoSection() {
   const skills = [
     { skill: 'Machine Learning', desc: 'From accidentally overfitting models to building actually useful ones. TensorFlow and scikit-learn are my trusty companions for creating trading models that sometimes even make money.' },
     { skill: 'Algorithmic Trading', desc: 'My SimpleRNN trading strategies have both impressed and horrified myself, professors, and my quant buddies alike. Learning the hard way about backtesting and overfitting pitfalls so you dont have to.' },
-    { skill: 'Full-Stack Development', desc: 'Django REST + Google Gemini = a very nice build for a school software engineering project with 4 other team members. Building apps that help fellow students survive those 3 AM study sessions, student at a time.' },
+    { skill: 'Full-Stack Development', desc: 'Django REST + Google Gemini = a very nice build for a school software engineering project with 4 other team members. Building apps that help fellow students survive those 3 AM study sessions, one student at a time.' },
     { skill: 'Python', desc: 'NumPy/Pandas... What more do I need to say?' },
     { skill: 'Leadership & Communication', desc: 'Translating tech speak into human language, a skill needed for todays Comp Sci majors. I can explain quant trading to both your CS professor and your grandmother.' },
   ];
