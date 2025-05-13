@@ -27,7 +27,7 @@ export default function AboutSection() {
               
               <AnimateOnScroll delay={0.4} direction="up" distance={20}>
                 <p className="text-lg text-gray-600 mb-6">
-                  I explored the intersection of AI and finance by developing my first algorithmic trading strategy—a SimpleRNN-based model to trade SPY using QuantConnect. Initially thrilled by promising backtests (15% CAR, Sharpe ratio of 0.87), I soon uncovered critical issues like overfitting and look-ahead bias. Rather than viewing these as setbacks, I embraced them as learning milestones. I shared these insights at UNC Charlotte, presenting my project as a cautionary case study to help peers avoid similar pitfalls.
+                  I explored the intersection of AI and finance by developing my first algorithmic trading strategy—a SimpleRNN-based model to trade SPY using QuantConnect. Initially thrilled by promising backtests, I soon uncovered critical issues like overfitting and look-ahead bias. Rather than viewing these as setbacks, I embraced them as learning milestones. I shared these insights at UNC Charlotte, presenting my project as a cautionary case study to help peers avoid similar pitfalls.
                 </p>
               </AnimateOnScroll>
               
@@ -46,13 +46,13 @@ export default function AboutSection() {
               
               <AnimateOnScroll delay={0.5} direction="up" distance={20}>
                 <p className="text-lg text-gray-600 mb-6">
-                  As an Eagle Scout, I led a team of 20+ volunteers to plan and construct a cemetery for a mosque community in Charlotte. This project demonstrated my leadership abilities and commitment to community service, bringing together diverse groups for a meaningful cause.
+                  As an Eagle Scout, I led a team of 20+ volunteers to plan and construct a cemetery for a mosque community in Charlotte. This project demonstrated my leadership abilities and commitment to community service, bringing together diverse groups for a meaningful cause, in tech and beyond.
                 </p>
               </AnimateOnScroll>
               
               <AnimateOnScroll delay={0.6} direction="left" distance={20}>
                 <p className="text-lg text-gray-600">
-                  I seek internship opportunities in machine learning, algorithmic trading, generative AI, or transformative FinTech spaces. My goal is to develop systems that empower users—delivering smarter decisions, measurable value, and open, transparent AI tools that respect both logic and intuition. As an Eagle Scout, I've also carried forward the leadership values that continue to shape my work ethic and service mindset.
+                  I seek internship opportunities in machine learning, software engineering, or transformative FinTech spaces. My goal is to develop systems that empower users—delivering smarter decisions, measurable value, and open, transparent AI tools that respect both logic and intuition. As an Eagle Scout, I've also carried forward the leadership values that continue to shape my work ethic and service mindset.
                 </p>
               </AnimateOnScroll>
             </div>

@@ -3,11 +3,9 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 const projects = [
-  { id: 'qc-rnn', name: 'QuantConnect RNN Trading', description: 'SimpleRNN-based model for SPY trading strategy using TensorFlow.' },
-  { id: 'ai-study', name: 'AI Study Assistant', description: 'Django web app with Google Gemini API integration for academic support.' },
+  { id: 'qc-rnn', name: 'QuantConnect RNN Trading Strategy (Case Study: Overfitting in Quant Models)', description: 'Case study of an overfit QuantConnect RNN trading strategy for SPY. Demonstrates pitfalls of lookahead bias in backtesting ML models.' },
+  { id: 'ai-study', name: 'AI Study Assistant (Django Project)', description: 'Django-based web application designed to assist users with studying, featuring AI integration powered by Google Gemini API.' },
   { id: 'eagle-scout', name: 'Eagle Scout Project', description: 'Cemetery construction project for local mosque community.' },
-  { id: 'presentations', name: 'ML Model Presentations', description: 'Public speaking on quantitative trading models and lessons learned.' },
-  { id: 'future', name: 'Future Endeavors', description: 'Upcoming projects in machine learning and finance.' },
 ];
 
 export default function ProjectTabs() {
@@ -31,16 +29,13 @@ export default function ProjectTabs() {
                 {project.name}
               </button>
             ))}
-            <button className="px-4 py-2 text-sm whitespace-nowrap text-gray-600 hover:text-black">
-              SEE ALL
-            </button>
           </div>
         </div>
         
         <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="relative h-96 rounded-md overflow-hidden bg-gray-900">
             <img 
-              src={`/Images/project-${activeTab}.jpg`}
+              src={`/Images/project1-${activeTab}.jpg`}
               alt={projects.find(p => p.id === activeTab)?.name || 'Project'} 
               className="w-full h-full object-cover"
               onError={(e) => {
@@ -74,15 +69,11 @@ export default function ProjectTabs() {
               {activeTab === 'qc-rnn' && 'Turning Trading Model Failures into Educational Success'}
               {activeTab === 'ai-study' && 'Enhancing Learning with Google Gemini Integration'}
               {activeTab === 'eagle-scout' && 'Leading Cross-Community Collaboration'}
-              {activeTab === 'presentations' && 'Teaching Quantitative Finance Principles'}
-              {activeTab === 'future' && 'Building AI That Respects Logic and Intuition'}
             </h2>
             <p className="mt-6 text-lg text-gray-600">
-              {activeTab === 'qc-rnn' && 'SimpleRNN architecture with walk-forward training on SPY price data (Mar-May 2025). Initially promising backtest results (15% CAR, 0.87 Sharpe), but uncovered critical overfitting issues from lookahead bias that became valuable learning lessons.'}
+              {activeTab === 'qc-rnn' && 'SimpleRNN architecture with walk-forward training on SPY price data (Mar-May 2025). Initially promising backtest results (15% CAR, 0.87 Sharpe), but uncovered critical overfitting issues from lookahead bias that became valuable learning lessons. Results and lessons were presented at UNC Charlotte\'s College of Computing and Informatics.'}
               {activeTab === 'ai-study' && 'Team project (ITSC 3155) developing a Django-based web application integrating Google\'s Gemini API for intelligent academic support. Features modular content sections and an AI endpoint for real-time, interactive responses to student queries.'}
               {activeTab === 'eagle-scout' && 'Led 20+ volunteers to plan and construct a cemetery for a mosque community in Charlotte. Managed all aspects of project planning, fundraising, and execution, demonstrating leadership across different community groups.'}
-              {activeTab === 'presentations' && 'Presented "Balancing ML Models in Quantitative Trading" at UNC Charlotte\'s College of Computing and Informatics, sharing insights about overfitting, validation procedures, and realistic model assumptions.'}
-              {activeTab === 'future' && 'Actively seeking internship opportunities in machine learning, algorithmic trading, generative AI, and transformative FinTech spaces. Committed to developing systems that empower users with transparent AI tools.'}
             </p>
             <Link 
               href={`#${activeTab}`} 
