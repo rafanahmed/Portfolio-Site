@@ -71,7 +71,7 @@ export default function ProjectTabs() {
               {activeTab === 'eagle-scout' && 'Leading Cross-Community Collaboration'}
             </h2>
             <p className="mt-6 text-lg text-gray-600">
-              {activeTab === 'qc-rnn' && 'SimpleRNN architecture with walk-forward training on SPY price data (Mar-May 2025). Initially promising backtest results (15% CAR, 0.87 Sharpe), but uncovered critical overfitting issues from lookahead bias that became valuable learning lessons. Results and lessons were presented at UNC Charlotte\'s College of Computing and Informatics.'}
+              {activeTab === 'qc-rnn' && 'SimpleRNN architecture with walk-forward training on SPY price data. Initially promising backtest results (15% CAR, 0.87 Sharpe), but uncovered critical overfitting issues from lookahead bias that became valuable learning lessons. Results and lessons were presented at UNC Charlotte\'s College of Computing and Informatics.'}
               {activeTab === 'ai-study' && 'Team project (ITSC 3155) developing a Django-based web application integrating Google\'s Gemini API for intelligent academic support. Features modular content sections and an AI endpoint for real-time, interactive responses to student queries.'}
               {activeTab === 'eagle-scout' && 'Led 20+ volunteers to plan and construct a cemetery for a mosque community in Charlotte. Managed all aspects of project planning, fundraising, and execution, demonstrating leadership across different community groups.'}
             </p>
