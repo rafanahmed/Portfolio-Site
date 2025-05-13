@@ -1,46 +1,38 @@
 "use client";
-import { useState } from 'react';
-import AnimateOnScroll from './AnimateOnScroll';
-// Remove TextReveal import if no longer needed elsewhere in the file
-// import TextReveal from './TextReveal'; 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
+
+// Social media links
+const socialLinks = [
+  {
+    name: 'LinkedIn',
+    url: '/Images/LinkedIn_icon.png',
+    icon: '/Images/linkedin-logo.png',
+    color: 'bg-blue-50 hover:bg-blue-100'
+  },
+  {
+    name: 'GitHub',
+    url: 'https://github.com/rafanahmed',
+    icon: '/Images/GitHub-logo1.png',
+    color: 'bg-gray-50 hover:bg-gray-100'
+  },
+  {
+    name: 'X',
+    url: 'https:/x.com/gnosismaxxing',
+    icon: '/Images/X-logo.png',
+    color: 'bg-black hover:bg-gray-900 text-white'
+  },
+  {
+    name: 'Instagram',
+    url: 'https://instagram.com/r0xis',
+    icon: '/Images/Instagram_icon.png',
+    color: 'bg-pink-50 hover:bg-pink-100'
+  }
+];
 
 export default function ContactForm() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  });
-  
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-  
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    
-    // In a real application, you would send this data to your backend
-    console.log('Form submitted:', formData);
-    
-    setIsSubmitting(false);
-    setSubmitted(true);
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    
-    // Reset submission status after 5 seconds
-    setTimeout(() => setSubmitted(false), 5000);
-  };
-
-  // Form field animation
-  const formVariants = {
+  // Animation variants
+  const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -50,167 +42,86 @@ export default function ContactForm() {
     }
   };
 
-  const fieldVariants = {
-    hidden: { opacity: 0, y: 15 },
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
     visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.5 }
+      y: 0, 
+      opacity: 1,
+      transition: { 
+        duration: 0.5,
+        ease: [0.22, 1, 0.36, 1]
+      }
     }
-  };
-  
-  // Button animation
-  const buttonVariants = {
-    initial: { scale: 1 },
-    hover: { 
-      scale: 1.02,
-      backgroundColor: "#333333", // Kept original hover color if intended
-      transition: { duration: 0.2 }
-    },
-    tap: { scale: 0.98 }
   };
   
   return (
     <section id="contact" className="bg-gray-50 py-20 border-t border-gray-200">
-      <div className="max-w-3xl mx-auto px-6">
-        {/* Replace TextReveal with direct motion.h2 similar to Testimonials.tsx */}
+      <div className="max-w-3xl mx-auto px-6 text-center">
         <motion.h2
-          className="text-4xl font-bold text-gray-900 mb-16" // Applied mb-16 like in Testimonials.tsx
+          className="text-4xl font-bold text-gray-900 mb-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.2 }}
         >
-          Get in touch
+          Follow and Connect with me!
         </motion.h2>
         
-        {/* Keep the original mb-10 on this paragraph if that was the intended original spacing */}
-        <AnimateOnScroll delay={0.2} direction="up" distance={15}>
-          <p className="text-lg text-gray-600 mb-10"> 
-            Interested in discussing machine learning, algorithmic trading, or collaboration opportunities? 
-            Feel free to reach out using the form below.
-          </p>
-        </AnimateOnScroll>
-        
-        {/* Keep the original structure without the extra div */}
-        {submitted ? (
-          <motion.div 
-            className="bg-green-50 border border-green-200 rounded-md p-6 text-center"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <motion.h3 
-              className="text-xl font-semibold text-green-800 mb-2"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.4 }}
+        <motion.div
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          {socialLinks.map((social) => (
+            <motion.div 
+              key={social.name}
+              variants={itemVariants}
+              whileHover={{ y: -5 }}
+              className="flex flex-col items-center"
             >
-              Message sent!
-            </motion.h3>
-            <motion.p 
-              className="text-green-700"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.4 }}
-            >
-              Thank you for reaching out. I'll get back to you as soon as possible.
-            </motion.p>
-          </motion.div>
-        ) : (
-          <AnimateOnScroll delay={0.3} direction="up" distance={25}>
-            <motion.form 
-              onSubmit={handleSubmit} 
-              className="space-y-6"
-              variants={formVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-            >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <motion.div variants={fieldVariants}>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black transition-all duration-200"
-                  />
-                </motion.div>
-                <motion.div variants={fieldVariants}>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black transition-all duration-200"
-                  />
-                </motion.div>
-              </div>
-              
-              <motion.div variants={fieldVariants}>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
-                  Subject
-                </label>
-                <select
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black transition-all duration-200"
-                >
-                  <option value="">Select a subject</option>
-                  <option value="Internship Opportunity">Internship Opportunity</option>
-                  <option value="Project Collaboration">Project Collaboration</option>
-                  <option value="Algorithmic Trading">Algorithmic Trading</option>
-                  <option value="Machine Learning">Machine Learning</option>
-                  <option value="Other">Other</option>
-                </select>
-              </motion.div>
-              
-              <motion.div variants={fieldVariants}>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black transition-all duration-200"
+              <Link 
+                href={social.url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={`w-16 h-16 rounded-full ${social.color} flex items-center justify-center mb-3 transition-transform shadow-md hover:shadow-lg`}
+              >
+                <img 
+                  src={social.icon} 
+                  alt={social.name} 
+                  className="w-8 h-8 object-contain" 
                 />
-              </motion.div>
-              
-              <motion.div variants={fieldVariants}>
-                <motion.button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className={`w-full py-3 bg-black text-white font-medium
-                    ${isSubmitting ? 'bg-opacity-70 cursor-not-allowed' : ''}`} // Removed rounded-md and specific hover effect
-                  variants={buttonVariants}
-                  initial="initial"
-                  whileHover="hover" // Kept original hover variant name
-                  whileTap="tap"
-                >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
-                </motion.button>
-              </motion.div>
-            </motion.form>
-          </AnimateOnScroll>
-        )}
+              </Link>
+              <span className="text-gray-700">{social.name}</span>
+            </motion.div>
+          ))}
+        </motion.div>
+        
+        <motion.div
+          className="bg-gray-100 p-8 rounded-lg"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+        >
+          <h3 className="text-xl font-medium text-gray-900 mb-4">
+            Fun fact, I make EDM music! If you want to listen:
+          </h3>
+          <Link 
+            href="https://open.spotify.com/artist/0NTfRmZBiFPXIt1JtXIine?si=WzRbvKfmSHuaiz3ehE-gnQ" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded-md shadow-md transition-transform hover:translate-y-[-2px]"
+          >
+            <img 
+              src="/Images/Spotify_Primary_Logo_RGB_Green.png" 
+              alt="Spotify" 
+              className="w-5 h-5 mr-2" 
+            />
+            Listen on Spotify
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
