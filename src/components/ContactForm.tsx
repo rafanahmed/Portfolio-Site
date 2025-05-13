@@ -6,8 +6,8 @@ import Link from 'next/link';
 const socialLinks = [
   {
     name: 'LinkedIn',
-    url: '/Images/LinkedIn_icon.png',
-    icon: '/Images/linkedin-logo.png',
+    url: 'https://www.linkedin.com/in/rafan-ahmed/',
+    icon: '/Images/LinkedIn_icon.png',
     color: 'bg-blue-50 hover:bg-blue-100'
   },
   {
