@@ -3,9 +3,24 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 const projects = [
-  { id: 'qc-rnn', name: 'QuantConnect RNN Trading Strategy (Case Study: Overfitting in Quant Models)', description: 'Case study of an overfit QuantConnect RNN trading strategy for SPY. Demonstrates pitfalls of lookahead bias in backtesting ML models.' },
-  { id: 'ai-study', name: 'AI Study Assistant (Django Project)', description: 'Django-based web application designed to assist users with studying, featuring AI integration powered by Google Gemini API.' },
-  { id: 'eagle-scout', name: 'Eagle Scout Project', description: 'Cemetery construction project for local mosque community.' },
+  { 
+    id: 'qc-rnn', 
+    name: 'QuantConnect RNN Trading Strategy (Case Study: Overfitting in Quant Models)', 
+    description: 'Case study of an overfit QuantConnect RNN trading strategy for SPY. Demonstrates pitfalls of lookahead bias in backtesting ML models.',
+    url: 'https://github.com/rafanahmed/QC-RNN-Overfitting-CaseStudy'
+  },
+  { 
+    id: 'ai-study', 
+    name: 'AI Study Assistant (Django Project)', 
+    description: 'Django-based web application designed to assist users with studying, featuring AI integration powered by Google Gemini API.',
+    url: 'https://github.com/rafanahmed/Django-AI-Study-Assistant'
+  },
+  { 
+    id: 'eagle-scout', 
+    name: 'Eagle Scout Project', 
+    description: 'Cemetery construction project for local mosque community.',
+    url: 'https://www.linkedin.com/in/rafan-ahmed/details/projects/'
+  },
 ];
 
 export default function ProjectTabs() {
@@ -53,7 +68,9 @@ export default function ProjectTabs() {
                 {projects.find(p => p.id === activeTab)?.description}
               </p>
               <Link 
-                href={`#${activeTab}`} 
+                href={projects.find(p => p.id === activeTab)?.url || '#'} 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-6 inline-flex items-center text-white"
               >
                 View Details 
@@ -75,15 +92,6 @@ export default function ProjectTabs() {
               {activeTab === 'ai-study' && 'Team project (ITSC 3155) developing a Django-based web application integrating Google\'s Gemini API for intelligent academic support. Features modular content sections and an AI endpoint for real-time, interactive responses to student queries.'}
               {activeTab === 'eagle-scout' && 'Led 20+ volunteers to plan and construct a cemetery for a mosque community in Charlotte. Managed all aspects of project planning, fundraising, and execution, demonstrating leadership across different community groups.'}
             </p>
-            <Link 
-              href={`#${activeTab}`} 
-              className="mt-8 inline-flex items-center text-black border-b border-black pb-1"
-            >
-              Learn More
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-            </Link>
           </div>
         </div>
       </div>
