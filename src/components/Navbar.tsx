@@ -1,9 +1,7 @@
 "use client";
 import Link from 'next/link';
-import { useState } from 'react';
-export default function Navbar() {
-  const [open, setOpen] = useState(false);
 
+export default function Navbar() {
   return (
     <header className="fixed top-0 left-0 w-full bg-white bg-opacity-95 backdrop-blur-sm z-50 border-b border-gray-200">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
@@ -12,61 +10,7 @@ export default function Navbar() {
             Rafan Ahmed
           </span>
         </Link>
-        
-        <div className="flex items-center space-x-4">
-          <button 
-            onClick={() => setOpen(!open)} 
-            aria-label="Menu" 
-            className="p-2 border border-gray-200"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="3" y1="12" x2="21" y2="12"></line>
-              <line x1="3" y1="6" x2="21" y2="6"></line>
-              <line x1="3" y1="18" x2="21" y2="18"></line>
-            </svg>
-          </button>
-        </div>
       </div>
-
-      {open && (
-        <nav className="bg-white border-t border-gray-200">
-          <div className="max-w-7xl mx-auto px-6 py-4">
-            <div className="grid grid-cols-4 gap-6">
-              <div>
-                <h3 className="font-medium text-gray-900 mb-4">Projects</h3>
-                <ul className="space-y-2">
-                  <li><Link href="#projects" onClick={() => setOpen(false)} className="text-gray-600 hover:text-black">QuantConnect RNN Trading</Link></li>
-                  <li><Link href="#projects" onClick={() => setOpen(false)} className="text-gray-600 hover:text-black">AI Study Assistant</Link></li>
-                  <li><Link href="#projects" onClick={() => setOpen(false)} className="text-gray-600 hover:text-black">Eagle Scout Project</Link></li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="font-medium text-gray-900 mb-4">Technical Skills</h3>
-                <ul className="space-y-2">
-                  <li><Link href="#skills" onClick={() => setOpen(false)} className="text-gray-600 hover:text-black">Machine Learning</Link></li>
-                  <li><Link href="#skills" onClick={() => setOpen(false)} className="text-gray-600 hover:text-black">Algorithmic Trading</Link></li>
-                  <li><Link href="#skills" onClick={() => setOpen(false)} className="text-gray-600 hover:text-black">Full-Stack Development</Link></li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="font-medium text-gray-900 mb-4">Technologies</h3>
-                <ul className="space-y-2">
-                  <li><Link href="#skills" onClick={() => setOpen(false)} className="text-gray-600 hover:text-black">Python, TensorFlow</Link></li>
-                  <li><Link href="#skills" onClick={() => setOpen(false)} className="text-gray-600 hover:text-black">Django, REST APIs</Link></li>
-                  <li><Link href="#skills" onClick={() => setOpen(false)} className="text-gray-600 hover:text-black">Google Gemini</Link></li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="font-medium text-gray-900 mb-4">About Me</h3>
-                <ul className="space-y-2">
-                  <li><Link href="#about" onClick={() => setOpen(false)} className="text-gray-600 hover:text-black">Presenter & Educator</Link></li>
-                  <li><Link href="#contact" onClick={() => setOpen(false)} className="text-gray-600 hover:text-black">Contact</Link></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </nav>
-      )}
     </header>
   );
 }
