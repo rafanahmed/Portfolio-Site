@@ -31,7 +31,7 @@ const socialLinks = [
   {
   name: 'Youtube',
   url: 'https://www.youtube.com/@gnosismaxxing',
-  icon: '/Images/YouTubeLogo.png',
+  icon: '/Images/YoutTubeLogo.png',
   color: 'bg-red-50 hover:bg-red-100'
   },
 ];
