@@ -28,14 +28,15 @@ const socialLinks = [
     icon: '/Images/Instagram_icon.png',
     color: 'bg-pink-50 hover:bg-pink-100',
   },
-  {
-    name: 'Youtube',
-    url: 'https://www.youtube.com/@gnosismaxxing',
-    icon: '/Images/YoutTubeLogo.png',
-    color: 'bg-red-50 hover:bg-red-100'
-  }
-
 ];
+
+const youtubeLink = {
+  name: 'Youtube',
+  url: 'https://www.youtube.com/@gnosismaxxing',
+  icon: '/Images/YouTubeLogo.png',
+  color: 'bg-red-50 hover:bg-red-100'
+};
+
 
 export default function ContactForm() {
   // Animation variants
