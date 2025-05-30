@@ -16,22 +16,7 @@ const socialLinks = [
     icon: '/Images/GitHub-logo1.png',
     color: 'bg-gray-50 hover:bg-gray-100'
   },
-  {
-    name: 'X',
-    url: 'https://x.com/gnosismaxxing',
-    icon: '/Images/X-logo.png',
-    color: 'bg-black hover:bg-gray-900 text-white'
-  },
-  {
-    name: 'Instagram',
-    url: 'https://instagram.com/r0xis',
-    icon: '/Images/Instagram_icon.png',
-    color: 'bg-pink-50 hover:bg-pink-100',
-  },
 ];
-
-
-
 
 export default function ContactForm() {
   // Animation variants
