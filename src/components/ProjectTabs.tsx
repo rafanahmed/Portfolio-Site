@@ -5,7 +5,7 @@ import Link from 'next/link';
 const projects = [
   { 
     id: 'qc-rnn', 
-    name: 'QuantConnect RNN Trading Strategy (Case Study: Overfitting in Quant Models)', 
+    name: 'RNN Trading Strategy (Case Study: Overfitting in Quant Models)', 
     description: 'Case study of an overfit QuantConnect RNN trading strategy for SPY. Demonstrates pitfalls of lookahead bias in backtesting ML models.',
     url: 'https://github.com/rafanahmed/QC-RNN-Overfitting-CaseStudy'
   },
@@ -14,6 +14,12 @@ const projects = [
     name: 'AI Study Assistant (Django Project)', 
     description: 'Django-based web application designed to assist users with studying, featuring AI integration powered by Google Gemini API.',
     url: 'https://github.com/rafanahmed/Django-AI-Study-Assistant'
+  },
+  { 
+    id: 'discord-bot', 
+    name: 'Scalable Real-Time Discord Bot', 
+    description: 'Microservices-based real-time discord bot with 15+ components serving 300+ users, featuring PostgreSQL architecture and event-driven processing with enterprise security.',
+    url: 'https://github.com/soundfont/minwoolee'
   },
   { 
     id: 'eagle-scout', 
@@ -85,11 +91,13 @@ export default function ProjectTabs() {
             <h2 className="text-4xl font-bold text-gray-900">
               {activeTab === 'qc-rnn' && 'Turning Trading Model Failures into Educational Success'}
               {activeTab === 'ai-study' && 'Enhancing Learning with Google Gemini Integration'}
+              {activeTab === 'discord-bot' && 'Building a Scalable Real-Time Discord Bot'}
               {activeTab === 'eagle-scout' && 'Leading Cross-Community Collaboration'}
             </h2>
             <p className="mt-6 text-lg text-gray-600">
               {activeTab === 'qc-rnn' && 'SimpleRNN architecture with walk-forward training on SPY price data. Initially promising backtest results (15% CAR, 0.87 Sharpe), but uncovered critical overfitting issues from lookahead bias that became valuable learning lessons. Results and lessons were presented at UNC Charlotte\'s College of Computing and Informatics.'}
               {activeTab === 'ai-study' && 'Team project (ITSC 3155) developing a Django-based web application integrating Google\'s Gemini API for intelligent academic support. Features modular content sections and an AI endpoint for real-time, interactive responses to student queries.'}
+              {activeTab === 'discord-bot' && '"minwoolee", named after famous golfer Min Woo Lee, is a comprehensive Discord bot featuring advanced moderation tools, utility functions, music playback, voice channel management, and entertainment features. Built with Python and discord.py, it provides a clean, consistent interface with server-branded embeds and robust database integration.'}
               {activeTab === 'eagle-scout' && 'Led 20+ volunteers to plan and construct a cemetery for a mosque community in Charlotte. Managed all aspects of project planning, fundraising, and execution, demonstrating leadership across different community groups.'}
             </p>
           </div>
