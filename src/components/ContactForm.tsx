@@ -86,7 +86,7 @@ export default function ContactForm() {
           ))}
         </motion.div>
         
-        <motion.div
+        {/* <motion.div
           className="bg-gray-100 p-8 rounded-lg"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -109,7 +109,7 @@ export default function ContactForm() {
             />
             Listen on Spotify
           </Link>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );
