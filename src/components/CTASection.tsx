@@ -6,7 +6,7 @@ export default function CTASection() {
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Link href="/Images/RafanAhmed_NoPhoneNum.pdf" className="bg-gray-100 p-12 flex flex-col items-start transition-transform hover:translate-y-[-4px]">
+          <Link href="/Images/RafanAhmedResume_07_03_25.pdf" className="bg-gray-100 p-12 flex flex-col items-start transition-transform hover:translate-y-[-4px]">
             <h3 className="text-3xl font-bold text-gray-900 mb-4">
               View Resume
             </h3>
